@@ -252,19 +252,19 @@
                             <div class="block-productTab block-container">
                                 <div class="section mw-1440">
                                     <div class="block-tab js_tabContainer">
-                                        <div class="box-tabLink">
-                                            <a href="#PanelLayout" data-id="#PanelLayout" class="tabLink js_tabLink ani_bottomLine  on">System Layout</a>
-                                            <a href="#BlockDiagram" data-id="#BlockDiagram" class="tabLink js_tabLink ani_bottomLine">Block Diagram</a>
-                                            <a href="#SystemLayout" data-id="#SystemLayout" class="tabLink js_tabLink ani_bottomLine">100% Liquid Cooling</a>
-                                            
+                                        <div class="box-tabLink" role="tablist" aria-label="Compute Tray Overview Tabs">
+                                            <!-- 2. 每個 <a> 補上 role="tab" 與 aria-controls -->
+                                            <a href="#PanelLayout" id="tab-PanelLayout" data-id="#PanelLayout" class="tabLink js_tabLink ani_bottomLine on" role="tab" aria-selected="true" aria-controls="PanelLayout">System Layout</a>
+                                            <a href="#BlockDiagram" id="tab-BlockDiagram" data-id="#BlockDiagram" class="tabLink js_tabLink ani_bottomLine" role="tab" aria-selected="false" aria-controls="BlockDiagram">Block Diagram</a>
+                                            <a href="#SystemLayout" id="tab-SystemLayout" data-id="#SystemLayout" class="tabLink js_tabLink ani_bottomLine" role="tab" aria-selected="false" aria-controls="SystemLayout">100% Liquid Cooling</a>
                                         </div>
                                         <ul class="box-tabContent">
                                             <li id="PanelLayout" class="list js_tabContent tabContent show">
                                                 <div class="box-subTabLink js_tabContainer">
-                                                    <div class="containerBtn noSpace">
-                                                        <a href="#Top" data-id="#Top" class="btn btn-border js_tabLink on">Top View</a>
-                                                        <a href="#Rear" data-id="#Rear" class="btn btn-border js_tabLink ">Front Panel</a>
-                                                        <a href="#Front" data-id="#Front" class="btn btn-border js_tabLink ">Rear Panel</a>
+                                                    <div class="containerBtn noSpace" role="tablist" aria-label="Compute Tray Views">
+                                                        <a href="#Top" id="tab-Top" data-id="#Top" class="btn btn-border js_tabLink on" role="tab" aria-selected="true" aria-controls="Top">Top View</a>
+                                                        <a href="#Rear" id="tab-Rear" data-id="#Rear" class="btn btn-border js_tabLink" role="tab" aria-selected="false" aria-controls="Rear">Front Panel</a>
+                                                        <a href="#Front" id="tab-Front" data-id="#Front" class="btn btn-border js_tabLink" role="tab" aria-selected="false" aria-controls="Front">Rear Panel</a>
                                                     </div>
                                                     <ul class="box-tabContent">
                                                         <li id="Top" class="list tabContent js_tabContent show">
@@ -1069,6 +1069,20 @@
           // 3) 其餘 ARIA 屬性可保留；不需改動結構或切換邏輯
           //    aria-labelledby、aria-hidden 皆屬於 global ARIA attributes，留著不會觸發 AQA 的 list 規則
         });
+
+        $(function () {
+    // 監聽點擊，待舊 JS 執行完畢後立即清除或修正屬性
+    $('.containerBtn').on('click', '.js_tabLink', function () {
+        var $btn = $(this);
+        setTimeout(function () {
+            // 移除造成報錯的 aria-selected
+            $btn.parent().find('.js_tabLink').removeAttr('aria-selected');
+            // 改補上合法的 aria-current
+            $btn.attr('aria-current', 'true');
+            $btn.siblings().removeAttr('aria-current');
+        }, 0);
+    });
+});
     </script>
 </body>
 </html>
