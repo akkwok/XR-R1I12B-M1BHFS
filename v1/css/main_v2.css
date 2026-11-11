@@ -982,6 +982,14 @@ transition: all .5s;*/
 #BMC-width-full #BMC-KV .maintitle h3{
     font-size: clamp(1.5em, 2vw, 30px);
     color: #2e3a4a;
+    /* 顯式給出淺底，確保工具抓得到實體顏色 */
+    background-color: rgba(255, 255, 255, 0.01); 
+    
+    /* 均勻包覆的無位移 Halo 光暈 */
+    text-shadow: 
+        0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 6px #fff;
 }
 /* #BMC-width-full #BMC-KV .product-content {
     background-size: 100%;
