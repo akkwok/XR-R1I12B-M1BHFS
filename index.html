@@ -524,15 +524,16 @@
                         </div>
                     </div>
 <div class="pod_area">
-  <div class="pod-spec-table" role="table" aria-label="ASUS AI POD - 576p GPUs 規格比較表">
-    <!-- 表格大標題 -->
-    <div class="pod-spec-caption" role="caption">ASUS AI POD - 576p GPUs</div>
+  <!-- 移除 role="caption"，將 aria-label 翻成英文 -->
+  <div class="pod-spec-table" role="table" aria-label="ASUS AI POD - 576p GPUs Specification Comparison">
+    <!-- 表格大標題：拿掉 role="caption"，保留 class 維持原樣式 -->
+    <div class="pod-spec-caption">ASUS AI POD - 576p GPUs</div>
 
     <!-- 表頭群組 -->
     <div class="pod-spec-thead" role="rowgroup">
       <div class="pod-spec-row pod-spec-header-row" role="row">
-        <!-- 左上角留白格 -->
-        <div class="pod-spec-cell col-feature" role="columnheader"><span class="sr-only">規格項目</span></div>
+        <!-- 左上角留白格：規格項目翻譯為英文 -->
+        <div class="pod-spec-cell col-feature" role="columnheader"><span class="sr-only">Specification items</span></div>
         <!-- 1 Rack 欄位 -->
         <div class="pod-spec-cell col-rack" role="columnheader">1 Rack</div>
         <!-- 1 SU 欄位 -->
